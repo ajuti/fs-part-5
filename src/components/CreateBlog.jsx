@@ -1,7 +1,7 @@
 import { useState } from "react"
 import blogService from "../services/blogs"
 
-const CreateBlog = ({ blogs, setBlogs, setError, setNotiText }) => {
+const CreateBlog = ({ blogs, setBlogs, setError, setNotiText, formRef }) => {
   const [title, setTitle] = useState("")
   const [author, setAuthor] = useState("")
   const [url, setUrl] = useState("")
@@ -15,6 +15,7 @@ const CreateBlog = ({ blogs, setBlogs, setError, setNotiText }) => {
       setAuthor("")
       setUrl("")
       setNotiText(`a new blog ${created.title} by ${created.author} added`)
+      formRef.current.toggleVisibility()
     } catch (exception) {
       console.log(exception.response)
       setError(true)
