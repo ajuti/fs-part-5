@@ -4,21 +4,19 @@ import CreateBlog from "./CreateBlog"
 import Notification from "./Notification"
 import Togglable from "./Togglable"
 
-const BlogList = ({blogs, user, setUser, setBlogs, error, setError, notiText, setNotiText}) => {
+const BlogList = ({ blogs, user, setUser, setBlogs, error, setError, notiText, setNotiText }) => {
   const blogFormRef = useRef()
 
   const handleLogout = async(event) => {
     event.preventDefault()
     window.localStorage.removeItem("loggedUser")
     setUser(null)
-    /* setError(false)
     setNotiText("Logout successful")
     setTimeout(() => {
       setNotiText(null)
-      setError(false)
-    }, 3000) */
+    }, 3000)
   }
-  console.log(error)
+
   return (
     <div>
       <h2>blogs</h2>

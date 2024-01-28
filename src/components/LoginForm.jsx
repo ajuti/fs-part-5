@@ -2,6 +2,7 @@ import { useState } from "react"
 import { loginUser } from "../services/login"
 import blogService from "../services/blogs"
 import Notification from "./Notification"
+import PropTypes from "prop-types"
 
 const LoginForm = ({ setUser, error, setError, notiText, setNotiText }) => {
   const [username, setUsername] = useState("")
@@ -14,7 +15,7 @@ const LoginForm = ({ setUser, error, setError, notiText, setNotiText }) => {
       const user = await loginUser(username, password)
 
       blogService.setToken(user.token)
-      setUser(user)   
+      setUser(user)
       window.localStorage.setItem("loggedUser", JSON.stringify(user))
       setUsername("")
       setPassword("")
@@ -35,12 +36,19 @@ const LoginForm = ({ setUser, error, setError, notiText, setNotiText }) => {
       <h2>log in to application</h2>
       <Notification msg={notiText} error={error} />
       <div>
-        username <input type="text" name="user" value={username} onChange={({target}) => setUsername(target.value)} /><br/>
-        password <input type="password" name="password" value={password} onChange={({target}) => setPassword(target.value)} />
+        username <input type="text" name="user" value={username} onChange={({ target }) => setUsername(target.value)} /><br/>
+        password <input type="password" name="password" value={password} onChange={({ target }) => setPassword(target.value)} />
       </div>
       <input type="submit" value="login" onClick={handleLogin} />
     </>
   )
+}
+
+LoginForm.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
+  setNotiText: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
 }
 
 export default LoginForm

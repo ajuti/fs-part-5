@@ -20,7 +20,7 @@ const CreateBlog = ({ blogs, setBlogs, setError, setNotiText, formRef }) => {
       console.log(exception.response)
       setError(true)
       setNotiText(`${exception.response.data.error}`)
-    }      
+    }
     setTimeout(() => {
       setNotiText(null)
       setError(false)
@@ -31,9 +31,9 @@ const CreateBlog = ({ blogs, setBlogs, setError, setNotiText, formRef }) => {
     <>
       <h2>create new blog</h2>
       <div>
-        title:<input type="text" value={title} onChange={({target}) => setTitle(target.value)} /><br/>
-        author:<input type="text" value={author} onChange={({target}) => setAuthor(target.value)} /><br/>
-        url:<input type="text" value={url} onChange={({target}) => setUrl(target.value)} /><br/>
+        title:<input type="text" value={title} onChange={({ target }) => setTitle(target.value)} /><br/>
+        author:<input type="text" value={author} onChange={({ target }) => setAuthor(target.value)} /><br/>
+        url:<input type="text" value={url} onChange={({ target }) => setUrl(target.value)} /><br/>
         <input type="submit" value="create" onClick={handleCreate} />
       </div>
     </>

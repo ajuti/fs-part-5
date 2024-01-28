@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import blogService from './services/blogs'
-import LoginForm from './components/LoginForm'
-import BlogList from './components/BlogList'
+import { useState, useEffect } from "react"
+import blogService from "./services/blogs"
+import LoginForm from "./components/LoginForm"
+import BlogList from "./components/BlogList"
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -26,22 +26,22 @@ const App = () => {
 
   return (
     <>
-      { !user && <LoginForm 
-        setUser={setUser} 
-        error={setError} 
-        setError={setError} 
-        notiText={notiText} 
+      { !user && <LoginForm
+        setUser={setUser}
+        error={error}
+        setError={setError}
+        notiText={notiText}
         setNotiText={setNotiText} /> }
 
-      { user && <BlogList 
-        blogs={blogs} 
-        user={user.name} 
-        setUser={setUser} 
-        setBlogs={setBlogs} 
-        error={error} 
-        setError={setError} 
-        notiText={notiText} 
-        setNotiText={setNotiText}/> 
+      { user && <BlogList
+        blogs={blogs}
+        user={user.name}
+        setUser={setUser}
+        setBlogs={setBlogs}
+        error={error}
+        setError={setError}
+        notiText={notiText}
+        setNotiText={setNotiText}/>
       }
     </>
   )

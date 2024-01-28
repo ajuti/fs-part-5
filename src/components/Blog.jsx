@@ -32,7 +32,7 @@ const Blog = ({ blog, setBlogs, blogs }) => {
         {blog.user.name}<br/>
         <button onClick={() => handleDelete(blog)}>remove</button>
       </div>
-    </div>  
+    </div>
   )
 }
 
