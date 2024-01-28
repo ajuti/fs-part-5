@@ -24,6 +24,7 @@ const App = () => {
     }
   }, [])
 
+
   return (
     <>
       { !user && <LoginForm
@@ -35,7 +36,7 @@ const App = () => {
 
       { user && <BlogList
         blogs={blogs}
-        user={user.name}
+        user={user}
         setUser={setUser}
         setBlogs={setBlogs}
         error={error}
