@@ -22,7 +22,7 @@ const CreateBlog = ({ createBlog }) => {
         title:<input type="text" value={title} data-testid="title" onChange={({ target }) => setTitle(target.value)} /><br/>
         author:<input type="text" value={author} data-testid="author" onChange={({ target }) => setAuthor(target.value)} /><br/>
         url:<input type="text" value={url} data-testid="url" onChange={({ target }) => setUrl(target.value)} /><br/>
-        <input type="submit" value="create" onClick={handleCreate} />
+        <input type="submit" value="create" id="createButton" onClick={handleCreate} />
       </div>
     </>
   )

@@ -36,10 +36,10 @@ const LoginForm = ({ setUser, error, setError, notiText, setNotiText }) => {
       <h2>log in to application</h2>
       <Notification msg={notiText} error={error} />
       <div>
-        username <input type="text" name="user" value={username} onChange={({ target }) => setUsername(target.value)} /><br/>
-        password <input type="password" name="password" value={password} onChange={({ target }) => setPassword(target.value)} />
+        username <input type="text" id="username" name="user" value={username} onChange={({ target }) => setUsername(target.value)} /><br/>
+        password <input type="password" id="password" name="password" value={password} onChange={({ target }) => setPassword(target.value)} />
       </div>
-      <input type="submit" value="login" onClick={handleLogin} />
+      <input type="submit" id="login" value="login" onClick={handleLogin} />
     </>
   )
 }

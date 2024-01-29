@@ -15,7 +15,7 @@ describe("<Blog />", () => {
       name: "aapo"
     }
   }
-  
+
   let component
   const mock_handleLike = jest.fn()
   const mock_handleDelete = jest.fn()
