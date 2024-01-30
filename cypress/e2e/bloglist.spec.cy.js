@@ -49,26 +49,71 @@ describe("Blog app", () => {
 
     describe("and a blog is created", () => {
       beforeEach(function() {
-        /* Creator if the blog is user: ajuti */
+        // Creator if the blog is user: ajuti 
         cy.createBlog({ title: "End to End blog", author: "Aapo", url: "www.testing.fi" })
-      })
-
-      it("a blog can be liked", function() {
         cy.contains("End to End blog")
           .parent()
           .parent()
           .as("blog")
-        
+      })
+
+      it("a blog can be liked", function() {
         cy.get("@blog")
           .contains("view")
           .click()
 
         cy.get("@blog")
-          .contains("like")
+          .get("#likeButton")
           .click()
       })
+      
+      it("user can delete the blog", function() {
+        cy.get("@blog")
+          .contains("view")
+          .click()
+        
+        cy.get("@blog")
+          .contains("remove")
+          .click()
 
+        cy.contains("End to End blog").should("not.exist")
+      })
 
+      it("user cannot see remove button if he's not the author", function() {
+        cy.register({ username: "cankku", name: "Can Kolho", password: "salainen" })
+        cy.contains("logout").click()
+
+        cy.login({ username: "cankku", password: "salainen" })
+        cy.get("@blog")
+          .contains("view")
+          .click()
+        
+        cy.get("@blog")
+          .contains("remove").should("not.exist")
+      })
+    })
+  
+    describe("when multiple blogs are created", () => {
+      beforeEach(function() {
+        cy.createBlog({ title: "End to End blog", author: "Aapo", url: "www.testing.fi" })
+        cy.createBlog({ title: "Second Blog", author: "Aapo", url: "www.localhost.fi" })
+        cy.createBlog({ title: "Final blog", author: "Aapo", url: "www.blogs.fi" })
+        cy.contains("view").eq(0).click()
+        cy.contains("view").eq(0).click()
+        cy.contains("view").eq(0).click()
+        cy.contains("End to End blog").parent().parent().as("blog1")
+        cy.contains("Final blog").parent().parent().as("blog3")
+      })
+
+      it("blogs should be sorted based on the amount of likes in descending order", function() {
+        cy.get("@blog3", {timeout: 1000}).find("button").eq(1).click()
+        cy.get("@blog1", {timeout: 1000}).find("button").eq(1).click()
+        cy.get("@blog3", {timeout: 1000}).find("button").eq(1).click()
+
+        cy.get(".blog").eq(0).should("contain", "Final blog")
+        cy.get(".blog").eq(1).should("contain", "End to End blog")
+        cy.get(".blog").eq(2).should("contain", "Second Blog")
+      })
     })
   })
 })

@@ -8,11 +8,11 @@ const Blog = ({ blog, handleDelete, handleLike, user }) => {
   return (
     <div className="blog">
       <div>
-        <span>{blog.title} {blog.author}</span><button onClick={() => setVisibility(!visible)}>view</button>
+        <span>{blog.title} {blog.author}</span><button onClick={() => setVisibility(!visible)}>{visible ? "hide" : "view"}</button>
       </div>
       <div style={showIfVisibleTrue}>
         <a href={blog.url}>{blog.url}</a><br/>
-        <span>likes {blog.likes}</span><button onClick={() => handleLike(blog)}>like</button><br/>
+        <span>likes {blog.likes}</span><button id="likeButton" onClick={() => handleLike(blog)}>like</button><br/>
         <span>{blog.user.name}</span><br/>
          {
           user.username === blog.user.username &&
